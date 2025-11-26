@@ -1,157 +1,132 @@
-# Pytest Lab: Creating a Code Challenge Test Suite
+Longest Palindromic Substring — Test Suite (Pytest Lab)
 
-## Overview 
-### Introduction: Algorithms in Interviews & Testing
+This repository contains a professional-grade automated test suite and implementation for the classic algorithm challenge Longest Palindromic Substring, built using pytest and following Test-Driven Development (TDD) principles.
 
-#### What is an Algorithm?
+The purpose of this project is to demonstrate how real-world engineering teams validate algorithms through automated testing before writing implementation code.
 
-An algorithm is a step-by-step procedure or set of rules designed to perform a task or solve a problem. Algorithms are the foundation of computer programming, defining how data is processed, stored, and retrieved efficiently.
+# Overview
 
-#### Algorithms in Tech Interviews
+This project includes:
 
-Algorithm challenges are a core part of technical interviews for software engineers, used to evaluate problem-solving skills, coding ability, and efficiency. Companies such as Google, Meta, Amazon, and Microsoft frequently ask candidates to solve coding problems under time constraints.
+- A comprehensive pytest test suite written before implementation (TDD)
 
-#### How Leetcode & Codewars Use Testing
+Tests covering:
 
-Platforms like Leetcode, Codewars, and HackerRank include test suites for each coding challenge. These test suites:
+- Basic palindrome cases
+- Edge cases (empty strings, single chars, no repeating chars)
+- Mixed alphanumeric cases
+- Stress tests
+- Error handling
+- A clean and fully passing algorithm implementation in palindrome.py
+- A reproducible project environment using Pipenv
 
-* Provide automated validation of solutions.
-* Include edge cases and performance tests.
-* Ensure code correctness before submission.
+The test suite ensures correctness, robustness, and reliability—similar to how coding challenge platforms such as LeetCode, HackerRank, and Codewars validate submissions.
 
-#### Your Task in This Lab
+## Purpose of This Project
 
-In this lab, you will build your own test suite for a common algorithm problem—the Longest Palindromic Substring—just like platforms like Leetcode would. Instead of solving a challenge with a pre-existing test set, you'll define the test cases yourself, ensuring robust validation before implementing the function (or using a provided solution).
+This lab demonstrates:
 
-### Scenario:
+- How to design an automated test suite before writing code (TDD)
+- How to structure Python projects for test discovery
+- How to use pytest effectively
+- How to validate edge cases and complex behavior
+- How to implement an interview-level algorithm and verify correctness
 
-As a junior software developer, you have been assigned to work on a feature validation team that ensures code reliability before deployment. A senior engineer has provided a function requirement: identifying the longest palindromic substring in a given input string. A palindrome is a word, phrase, or sequence that reads the same backward as forward.
-<br>
-Before implementing the function, the team follows a Test-Driven Development (TDD) approach, requiring you to first write a test suite that verifies correctness. Your task is to:
-* Write test cases using pytest to validate a function for the Longest Palindromic Substring problem.
-* Consider normal, edge, and failure cases to ensure test robustness.
-* Run your tests and refine them as needed.
-* Implement the function yourself OR use the provided working solution if needed.
+#### Technologies Used
+Technology	    |    Purpose
+Python 3.12	    |    Programming language
+Pytest 9.x	    |    Testing framework
+Pipenv	        |    Dependency & virtual environment management
+VSCode / CLI	|    Development environment
+TDD Workflow	|    Methodology: write tests before implementation
 
-## Instructions
-### Set Up
-Before we begin coding, let's complete the initial setup for this lesson: 
+#### Project Structure
+python-pytest-code-challenge-lab/
+│
+├── lib/
+│   ├── palindrome.py              # Algorithm implementation
+│   └── testing/
+│       └── test_palindrome.py     # Complete pytest test suite
+│
+├── pytest.ini                     # Configures test discovery + pythonpath
+├── Pipfile                        # Environment + dependency definitions
+├── Pipfile.lock                   # Locked dependency versions
+└── README.md                      # Project documentation (this file)
 
-1. Fork and Clone
-    * Fork the repository to your GitHub account.
-    * Clone the forked repository to your local machine.
-2. Open and Run File
-    * Open the project in VSCode.
-    * Run `pipenv install` to install all necessary dependencies.
-    * Run `pipenv shell` to enter the virtual environment.
+Key Files
 
-### Instructions
-1. Step 1: Understand the Challenge
-* You need to write tests for a function that finds the longest palindromic substring in a given string. A palindrome is a word, phrase, or sequence that reads the same backward as forward.
-* Function Signature
-```python
-def longest_palindromic_substring(s):
-    """
-    Given a string s, return the longest palindromic substring.
-    """
-    pass  # Function implementation comes later
-```
-* Example Inputs/Outputs
+- lib/palindrome.py
+-- Contains the implementation for longest_palindromic_substring().
 
-|   Input  |  Output | Explanation |
-| --- | --- | --- |
-| "babad" | "bab" or "aba" | Both are valid palindromes. |
-| "cbbd" | "bb" | The longest palindrome is "bb". |
-| “a” | “a” | A single character is always a palindrome. |
-| “ac” | "a" or "c" | Either character is a valid palindrome. |
-| “racecar” | “racecar” | The entire string is a palindrome. |
+- lib/testing/test_palindrome.py
+-- Contains 16+ tests covering all expected behavior.
 
-* Constraints / Assumptions
-    * 1 <= s.length <= 1000
-    * s consists of only digits and English letters.
+- pytest.ini
+-- Ensures pytest can find modules under lib/.
 
-2. Step 2: Install Pytest
-* Add pytest dependency to the Pipfile and install
-```bash
-pip install pytest
-```
-* Create a pytest.ini file in the root directory with the following code:
-```
-[pytest]
-pythonpath = . lib
-```
-* Create a testing folder inside lib/
-```bash
-mkdir lib/testing
-```
-* Create the test_palindrome.py file
-```bash
-touch lib/testing/test_palindrome.py
-```
+#### Dependencies
 
+This project uses Pipenv.
+Dependencies include:
 
-3. Step 3: Write Your Test Suite
-* Your primary task is to create a Pytest test suite for the function in test_palindrome.py.
-* Your test cases should cover:
-    * Basic Cases – Check common inputs return expected outputs.
-    * Edge Cases – Handle single-character strings, empty strings, long strings, and no-palindrome cases.
-* ⚠️ Do NOT implement longest_palindromic_substring yet! Follow the Test-Driven Development (TDD) approach.
+- Python (3.12 recommended)
+- pytest
 
-4. Step 4: Run the Tests
-* Once you’ve written your test cases, run them using pytest:
-```bash
+If Pipenv is not installed:
+- pip install pipenv
+
+#### Setup & Installation
+1. Clone the Repository
+git clone <your-repo-url>
+cd python-pytest-code-challenge-lab
+
+2. Install Dependencies with Pipenv
+pipenv install
+pipenv shell
+
+This:
+- Creates a virtual environment
+- Installs pytest and all required packages
+
+#### Running the Test Suite
+
+Once inside the Pipenv shell, run:
+
 pytest
-```
-* You should see failing tests, since the function is not yet implemented. This is expected! 
-* If any of the tests pass without a solution implemented, something is wrong with your tests and you’ll need to debug.
 
-5. Step 5: Implement the Function
-* Now, solve the algorithm by adding code to the function in palindrome.py until all tests pass.
-    * Break Glass Solution
-        * 🚨 The purpose of the lab is the test suite implementation, so if you cannot solve the problem on your own that’s okay! You can use this working solution:
+Expected output (all tests passing):
+- 16 passed in 0.02s
 
-```python
-def longest_palindromic_substring(s):
-    """
-    Given a string s, return the longest palindromic substring.
-    """
-    n = len(s)
-    if n < 2:
-        return s
-    
-    start = 0
-    max_len = 1
-
-    def expand_around_center(left, right):
-        while left >= 0 and right < n and s[left] == s[right]:
-            left -= 1
-            right += 1
-        return right - left - 1
-
-    for i in range(n):
-        len1 = expand_around_center(i, i)
-        len2 = expand_around_center(i, i + 1)
-        max_curr_len = max(len1, len2)
-        if max_curr_len > max_len:
-            max_len = max_curr_len
-            start = i - (max_len - 1) // 2
-            
-    return s[start:start + max_len]
-```
+If you want more verbose output:
+- pytest -vv
 
 
-6. Step 6: Handle Additional Edge Cases and Debug (if needed)
-* Are there any edge cases your test suite is not handling? If so, add additional tests to ensure edge case coverage.
-* Is there any code you need to clean up or debug in the test or solution?
+If you want to see print statements or debugging output:
+- pytest -s
 
-7. Step 7: Verify and Submit
-* Confirm your tests pass:
-```bash
-pytest
-```
-* Push your final version to GitHub:
-```bash
-git add .
-git commit -m "Completed testing lab"
-git push origin main
-```
+#### Implementation Behavior Validated by The Tests
+
+The test suite validates:
+- Odd-length palindromes ("babad" → "bab" or "aba")
+- Even-length palindromes ("cbbd" → "bb")
+- Full-string palindromes ("racecar")
+- Single-character strings
+- Empty strings
+- Numeric palindromes ("1234321")
+- Mixed alphanumeric palindromes
+- Behavior with repeating blocks
+- Internal palindromes in larger strings
+- Type error handling for non-string inputs
+
+The suite ensures that any valid implementation must handle both standard and edge-case scenarios.
+
+#### Final Notes
+
+This project is a complete demonstration of:
+- Writing a professional-grade test suite
+- Using TDD for algorithm development
+- Managing dependencies with Pipenv
+- Running automated tests using pytest
+- Structuring a Python project for clarity and reproducibility
+
+Feel free to extend this project with more algorithm challenges, CI/CD integrations, or additional test suites!
